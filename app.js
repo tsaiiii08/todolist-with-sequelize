@@ -12,12 +12,13 @@ const Todo = db.Todo
 const User = db.User
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
-usePassport(app)
+
 app.use(session({
   secret: 'ThisIsMySecret',
   resave: false,
   saveUninitialized: true
 }))
+usePassport(app)
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated()
   res.locals.user = req.user

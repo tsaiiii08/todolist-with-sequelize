@@ -10,9 +10,9 @@ router.get('/new', (req, res) => {
 
 //新增一筆todo
 router.post('/', (req, res) => {
-  console.log(req.body.name)
   const name = req.body.name
-  return Todo.create({ name})
+  const UserId = req.user.id
+  return Todo.create({ name,UserId})
     .then(() => res.redirect('/'))
     .catch(error => console.log('error'))
 })
