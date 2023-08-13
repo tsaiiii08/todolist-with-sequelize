@@ -10,6 +10,7 @@ router.get('/new', (req, res) => {
 
 //新增一筆todo
 router.post('/', (req, res) => {
+  console.log(req.body.name)
   const name = req.body.name
   return Todo.create({ name})
     .then(() => res.redirect('/'))
