@@ -16,12 +16,14 @@ router.post('/', (req, res) => {
     .then(() => res.redirect('/'))
     .catch(error => console.log('error'))
 })
-
+//看一筆todo的資訊
 router.get('/:id', (req, res) => {
+  const UserId = req.user.id
   const id = req.params.id
-  return Todo.findByPk(id)
+  return Todo.findOne({
+    where: { id, UserId }
+  })
     .then(todo => res.render('detail', { todo: todo.toJSON() }))
     .catch(error => console.log(error))
 })
-
 module.exports = router
